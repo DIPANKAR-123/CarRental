@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Car Rental</title>
+    <style>
+        /* Modern CSS Reset and Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --accent: #f97316;
+            --background: #f8fafc;
+            --foreground: #0f172a;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #64748b;
+            --radius: 0.5rem;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            background: var(--card);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .primary-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .primary-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Search Form */
+        .search-form {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 1000px;
+            margin: -4rem auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            position: relative;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Cars Grid */
+        .cars-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-details {
+            padding: 1.5rem;
+        }
+
+        .car-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .car-spec {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .car-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price span {
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-weight: normal;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+                margin: 2rem;
+            }
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .loading {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #f6f7f8 4%, #edeef1 25%, #f6f7f8 36%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            🚗 CarRent
+        </a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Cars</a>
+            <a href="#" class="nav-link">Locations</a>
+            <a href="#" class="nav-link">About</a>
+            <button class="primary-button" id="signOut">Sign Out</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Find Your Perfect Ride</h1>
+        <p>Choose from our wide selection of cars for any occasion. Book easily and drive away in minutes.</p>
+    </section>
+
+    <form class="search-form">
+        <div class="form-group">
+            <label>Pick-up Location</label>
+            <select id="location">
+                <option>New York</option>
+                <option>Los Angeles</option>
+                <option>Chicago</option>
+                <option>Houston</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Pick-up Date</label>
+            <input type="date" id="pickupDate">
+        </div>
+        <div class="form-group">
+            <label>Return Date</label>
+            <input type="date" id="returnDate">
+        </div>
+        <div class="form-group">
+            <label>&nbsp;</label>
+            <button type="submit" class="primary-button">Search Cars</button>
+        </div>
+    </form>
+
+    <section class="cars-section">
+        <div class="section-header">
+            <h2>Available Cars</h2>
+            <div class="filters">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="suv">SUV</button>
+                <button class="filter-button" data-filter="sedan">Sedan</button>
+                <button class="filter-button" data-filter="luxury">Luxury</button>
+            </div>
+        </div>
+
+        <div class="cars-grid" id="carsGrid">
+            <!-- Cars will be added here dynamically -->
+        </div>
+    </section>
+
+    <script>
+        // Sample car data
+        const cars = [
+            {
+                id: 1,
+                name: "Tesla Model 3",
+                type: "sedan",
+                image: "https://cdn.pixabay.com/photo/2021/01/15/16/49/tesla-5919764_1280.jpg",
+                price: 99,
+                specs: {
+                    seats: "5 Seats",
+                    luggage: "3 Bags",
+                    transmission: "Automatic",
+                    mileage: "Unlimited"
+                },
+                location:"New York"
+            },
+            {
+                id: 2,
+                name: "BMW X5",
+                type: "suv",
+                image: "https://t3.ftcdn.net/jpg/04/35/92/40/240_F_435924070_A2n5ZyQUF7nCRsYZj6SX1SAYOn5sggFh.jpg",
+                price: 149,
+                specs: {
+                    seats: "7 Seats",
+                    luggage: "5 Bags",
+                    transmission: "Automatic",
+                    mileage: "Unlimited"
+                }
+            },
+            {
+                id: 3,
+                name: "Mercedes S-Class",
+                type: "luxury",
+                image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_1280.jpg",
+                price: 199,
+                specs: {
+                    seats: "4 Seats",
+                    luggage: "3 Bags",
+                    transmission: "Automatic",
+                    mileage: "Unlimited"
+                }
+            }
+        ];
+
+        // DOM Elements
+        const logOutBtn=document.getElementById('signOut')
+        const carsGrid = document.getElementById('carsGrid');
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const searchForm = document.querySelector('.search-form');
+
+        logOutBtn.addEventListener('click',()=>{
+            console.log("here")
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("user");
+            window.location.href="../login.html"
+        })
+
+        // Render cars
+        function renderCars(carsToRender) {
+            carsGrid.innerHTML = '';
+            carsToRender.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                carCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="car-image">
+                    <div class="car-details">
+                        <h3 class="car-title">${car.name}</h3>
+                        <div class="car-specs">
+                            <div class="car-spec">👥 ${car.specs.seats}</div>
+                            <div class="car-spec">🧳 ${car.specs.luggage}</div>
+                            <div class="car-spec">⚙️ ${car.specs.transmission}</div>
+                            <div class="car-spec">🛣️ ${car.specs.mileage}</div>
+                        </div>
+                        <div class="car-price">
+                            <div class="price">$${car.price}<span>/day</span></div>
+                            <button class="primary-button">Rent Now</button>
+                        </div>
+                    </div>
+                `;
+                carsGrid.appendChild(carCard);
+            });
+        }
+
+        // Filter cars
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter cars
+                const filterValue = button.dataset.filter;
+                const filteredCars = filterValue === 'all' 
+                    ? cars 
+                    : cars.filter(car => car.type === filterValue);
+                
+                renderCars(filteredCars);
+            });
+        });
+
+        // Handle search form
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const location = document.getElementById('location').value;
+            const pickupDate = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+
+            // Simulate search loading
+            carsGrid.innerHTML = '<div class="loading">Searching for cars...</div>';
+            
+            // Simulate API call
+            setTimeout(() => {
+                renderCars(cars);
+            }, 1000);
+        });
+
+        // Initial render
+        renderCars(cars);
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add date validation
+        const pickupDateInput = document.getElementById('pickupDate');
+        const returnDateInput = document.getElementById('returnDate');
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        pickupDateInput.min = today;
+        returnDateInput.min = today;
+
+        pickupDateInput.addEventListener('change', function() {
+            returnDateInput.min = this.value;
+        });
+    </script>
+</body>
+</html>
