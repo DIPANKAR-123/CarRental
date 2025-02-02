@@ -184,6 +184,11 @@ body {
     padding: 1.5rem;
 }
 
+.car-header{
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
 .car-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -247,6 +252,50 @@ body {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
+}
+
+.trending-section, .cars-section {
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-button.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.trending-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.trending-cars {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem 0;
 }
 
 /* Responsive Design */
