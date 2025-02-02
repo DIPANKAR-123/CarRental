@@ -1,204 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Rental - Login/Signup</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        input {
-            padding: 0.5rem;
-            margin-top: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .toggle {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        .toggle a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        .error {
-            color: red;
-            font-size: 0.8rem;
-            margin-top: 0.2rem;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+      input {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .toggle {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      .toggle a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+      .error {
+        color: red;
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Car Rental Platform</h1>
-        <form id="loginForm">
-            <h2>Login</h2>
-            <label for="loginEmail">Email:</label>
-            <input type="email" id="loginEmail" required>
-            <div class="error" id="loginEmailError"></div>
-            
-            <label for="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" required>
-            <div class="error" id="loginPasswordError"></div>
-            
-            <button type="submit">Login</button>
-        </form>
-        
-        <form id="signupForm" style="display: none;">
-            <h2>Sign Up</h2>
-            <label for="signupName">Full Name:</label>
-            <input type="text" id="signupName" required>
-            <div class="error" id="signupNameError"></div>
-            
-            <label for="signupEmail">Email:</label>
-            <input type="email" id="signupEmail" required>
-            <div class="error" id="signupEmailError"></div>
-            
-            <label for="signupPassword">Password:</label>
-            <input type="password" id="signupPassword" required>
-            <div class="error" id="signupPasswordError"></div>
-            
-            <label for="signupConfirmPassword">Confirm Password:</label>
-            <input type="password" id="signupConfirmPassword" required>
-            <div class="error" id="signupConfirmPasswordError"></div>
-            
-            <button type="submit">Sign Up</button>
-        </form>
-        
-        <div class="toggle">
-            <a href="#" id="toggleForm">Don't have an account? Sign up</a>
-        </div>
+      <h1>Car Rental Platform</h1>
+      <form id="loginForm">
+        <h2>Login</h2>
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" required />
+        <div class="error" id="loginEmailError"></div>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
+        <div class="error" id="loginPasswordError"></div>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="signupForm" style="display: none">
+        <h2>Sign Up</h2>
+        <label for="signupName">Full Name:</label>
+        <input type="text" id="signupName" required />
+        <div class="error" id="signupNameError"></div>
+
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" required />
+        <div class="error" id="signupEmailError"></div>
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" required />
+        <div class="error" id="signupPasswordError"></div>
+
+        <label for="signupConfirmPassword">Confirm Password:</label>
+        <input type="password" id="signupConfirmPassword" required />
+        <div class="error" id="signupConfirmPasswordError"></div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <div class="toggle">
+        <a href="#" id="toggleForm">Don't have an account? Sign up</a>
+      </div>
     </div>
 
     <script>
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const toggleForm = document.getElementById('toggleForm');
+      const loginForm = document.getElementById("loginForm");
+      const signupForm = document.getElementById("signupForm");
+      const toggleForm = document.getElementById("toggleForm");
 
-        toggleForm.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (loginForm.style.display === 'none') {
-                loginForm.style.display = 'flex';
-                signupForm.style.display = 'none';
-                toggleForm.textContent = "Don't have an account? Sign up";
-            } else {
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'flex';
-                toggleForm.textContent = "Already have an account? Login";
-            }
-        });
+      toggleForm.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (loginForm.style.display === "none") {
+          loginForm.style.display = "flex";
+          signupForm.style.display = "none";
+          toggleForm.textContent = "Don't have an account? Sign up";
+        } else {
+          loginForm.style.display = "none";
+          signupForm.style.display = "flex";
+          toggleForm.textContent = "Already have an account? Login";
+        }
+      });
 
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Basic validation
-            let isValid = true;
-            
-            if (!email) {
-                document.getElementById('loginEmailError').textContent = 'Email is required';
-                isValid = false;
-            } else {
-                document.getElementById('loginEmailError').textContent = '';
-            }
-            
-            if (!password) {
-                document.getElementById('loginPasswordError').textContent = 'Password is required';
-                isValid = false;
-            } else {
-                document.getElementById('loginPasswordError').textContent = '';
-            }
-            
-            if (isValid) {
-                alert('Login successful!');
-                // Here you would typically send the data to your server
-            }
-        });
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
 
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            
-            // Basic validation
-            let isValid = true;
-            
-            if (!name) {
-                document.getElementById('signupNameError').textContent = 'Name is required';
-                isValid = false;
-            } else {
-                document.getElementById('signupNameError').textContent = '';
-            }
-            
-            if (!email) {
-                document.getElementById('signupEmailError').textContent = 'Email is required';
-                isValid = false;
-            } else {
-                document.getElementById('signupEmailError').textContent = '';
-            }
-            
-            if (!password) {
-                document.getElementById('signupPasswordError').textContent = 'Password is required';
-                isValid = false;
-            } else {
-                document.getElementById('signupPasswordError').textContent = '';
-            }
-            
-            if (password !== confirmPassword) {
-                document.getElementById('signupConfirmPasswordError').textContent = 'Passwords do not match';
-                isValid = false;
-            } else {
-                document.getElementById('signupConfirmPasswordError').textContent = '';
-            }
-            
-            if (isValid) {
-                alert('Sign up successful!');
-            }
-        });
+        // Basic validation
+        let isValid = true;
+
+        if (!email) {
+          document.getElementById("loginEmailError").textContent =
+            "Email is required";
+          isValid = false;
+        } else {
+          document.getElementById("loginEmailError").textContent = "";
+        }
+
+        if (!password) {
+          document.getElementById("loginPasswordError").textContent =
+            "Password is required";
+          isValid = false;
+        } else {
+          document.getElementById("loginPasswordError").textContent = "";
+        }
+
+        if (isValid) {
+          alert("Login successful!");
+
+          var users = JSON.parse(localStorage.getItem("users")) || [];
+
+          var user = users.find(
+            (user) => user.email === email && user.password === password
+          );
+
+          if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("isLoggedIn", "true");
+
+            alert("Login successful!");
+            window.location.href = "./Views/Landing.html";
+          } else {
+            alert("Invalid email or password.");
+          }
+          // Here you would typically send the data to your server
+        }
+      });
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("signupName").value;
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
+        const confirmPassword = document.getElementById(
+          "signupConfirmPassword"
+        ).value;
+
+        // Basic validation
+        let isValid = true;
+
+        if (!name) {
+          document.getElementById("signupNameError").textContent =
+            "Name is required";
+          isValid = false;
+        } else {
+          document.getElementById("signupNameError").textContent = "";
+        }
+
+        if (!email) {
+          document.getElementById("signupEmailError").textContent =
+            "Email is required";
+          isValid = false;
+        } else {
+          document.getElementById("signupEmailError").textContent = "";
+        }
+
+        if (!password) {
+          document.getElementById("signupPasswordError").textContent =
+            "Password is required";
+          isValid = false;
+        } else {
+          document.getElementById("signupPasswordError").textContent = "";
+        }
+
+        if (password !== confirmPassword) {
+          document.getElementById("signupConfirmPasswordError").textContent =
+            "Passwords do not match";
+          isValid = false;
+        } else {
+          document.getElementById("signupConfirmPasswordError").textContent =
+            "";
+        }
+
+        if (isValid) {
+          var users = JSON.parse(localStorage.getItem("users")) || [];
+
+          var existingUser = users.find((user) => user.email === email);
+          if (existingUser) {
+            alert(
+              "User already exists. Please use a different email or log in."
+            );
+            return;
+          }
+   
+          users.push({ email, password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          window.location.href = "login.html";
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

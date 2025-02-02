@@ -4,291 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Car Rental</title>
-    <style>
-        /* Modern CSS Reset and Variables */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #4f46e5;
-            --accent: #f97316;
-            --background: #f8fafc;
-            --foreground: #0f172a;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --muted: #64748b;
-            --radius: 0.5rem;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--foreground);
-            line-height: 1.5;
-        }
-
-        /* Modern Navbar */
-        .navbar {
-            background: var(--card);
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--foreground);
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .primary-button {
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .primary-button:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 4rem;
-            padding: 4rem 2rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Search Form */
-        .search-form {
-            background: var(--card);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            max-width: 1000px;
-            margin: -4rem auto 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            position: relative;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            color: var(--muted);
-        }
-
-        .form-group input, .form-group select {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Cars Grid */
-        .cars-section {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .cars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .car-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s;
-        }
-
-        .car-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .car-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .car-details {
-            padding: 1.5rem;
-        }
-
-        .car-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .car-specs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1rem 0;
-            color: var(--muted);
-            font-size: 0.875rem;
-        }
-
-        .car-spec {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .car-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .price span {
-            font-size: 0.875rem;
-            color: var(--muted);
-            font-weight: normal;
-        }
-
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-button {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--card);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-button.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .search-form {
-                grid-template-columns: 1fr;
-                margin: 2rem;
-            }
-
-            .cars-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Loading Animation */
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        .loading {
-            animation: shimmer 2s infinite linear;
-            background: linear-gradient(to right, #f6f7f8 4%, #edeef1 25%, #f6f7f8 36%);
-            background-size: 1000px 100%;
-        }
-    </style>
+  <link rel="stylesheet" href="../styles/landing.css">
 </head>
 <body>
     <nav class="navbar">
@@ -296,15 +12,15 @@
             🚗 CarRent
         </a>
         <div class="nav-links">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Cars</a>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#cars-section" class="nav-link">Cars</a>
             <a href="#" class="nav-link">Locations</a>
             <a href="#" class="nav-link">About</a>
             <button class="primary-button" id="signOut">Sign Out</button>
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <h1>Find Your Perfect Ride</h1>
         <p>Choose from our wide selection of cars for any occasion. Book easily and drive away in minutes.</p>
     </section>
@@ -333,7 +49,7 @@
         </div>
     </form>
 
-    <section class="cars-section">
+    <section class="cars-section" id="cars-section">
         <div class="section-header">
             <h2>Available Cars</h2>
             <div class="filters">
@@ -364,6 +80,8 @@
                     transmission: "Automatic",
                     mileage: "Unlimited"
                 },
+                start_date:"02-02-2025",
+                end_date:"04-02-2025",
                 location:"New York"
             },
             {
@@ -377,7 +95,10 @@
                     luggage: "5 Bags",
                     transmission: "Automatic",
                     mileage: "Unlimited"
-                }
+                },
+                start_date:"02-02-2025",
+                end_date:"04-02-2025",
+                location:"New York"
             },
             {
                 id: 3,
@@ -389,8 +110,11 @@
                     seats: "4 Seats",
                     luggage: "3 Bags",
                     transmission: "Automatic",
-                    mileage: "Unlimited"
-                }
+                    mileage: "30Km"
+                },
+                start_date:"02-02-2025",
+                end_date:"04-02-2025",
+                location:"New York"
             }
         ];
 
@@ -422,6 +146,8 @@
                             <div class="car-spec">🧳 ${car.specs.luggage}</div>
                             <div class="car-spec">⚙️ ${car.specs.transmission}</div>
                             <div class="car-spec">🛣️ ${car.specs.mileage}</div>
+                            <div class="car-spec">🛣️ ${car.start_date}</div>
+                            <div class="car-spec">🛣️ ${car.end_date}</div>
                         </div>
                         <div class="car-price">
                             <div class="price">$${car.price}<span>/day</span></div>
