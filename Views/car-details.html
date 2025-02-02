@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --background: #f8fafc;
+            --foreground: #1e293b;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #64748b;
+            --radius: 0.5rem;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+        }
+
+        .navbar {
+            background: var(--card);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .car-details, .bidding-section, .chat-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+
+        .car-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .car-info h3 {
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .car-spec {
+            display: flex;
+            align-items: center;
+            background-color: var(--background);
+            padding: 0.5rem;
+            border-radius: var(--radius);
+        }
+
+        .car-spec strong {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .bid-form {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .bid-input, .date-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .bid-input:focus, .date-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .primary-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .primary-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .top-bidders {
+            margin-top: 2rem;
+        }
+
+        .top-bidders h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .bidder {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--background);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            background-color: var(--background);
+        }
+
+        .message.owner {
+            text-align: right;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+
+        /* Flatpickr custom styles */
+        .flatpickr-calendar {
+            box-shadow: var(--shadow) !important;
+            border-radius: var(--radius) !important;
+        }
+
+        .flatpickr-day.selected {
+            background: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+
+        .flatpickr-day.flatpickr-disabled {
+            background-color: #fee2e2 !important;
+            color: #ef4444 !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">🚗 CarRent</a>
+    </nav>
+
+    <div class="container">
+        <div class="car-details">
+            <img id="carImage" class="car-image" alt="Car">
+            <div class="car-info">
+                <h2 id="carName"></h2>
+                <h3 id="carLocation"></h3>
+                <div class="car-specs">
+                    <div class="car-spec"><strong>Price:</strong> $<span id="carPrice"></span>/day</div>
+                    <div class="car-spec"><strong>Seats:</strong> <span id="carSeats"></span></div>
+                    <div class="car-spec"><strong>Luggage:</strong> <span id="carLuggage"></span></div>
+                    <div class="car-spec"><strong>Transmission:</strong> <span id="carTransmission"></span></div>
+                    <div class="car-spec"><strong>Mileage:</strong> <span id="carMileage"></span></div>
+                    <div class="car-spec"><strong>Available From:</strong> <span id="carStartDate"></span></div>
+                    <div class="car-spec"><strong>Available Until:</strong> <span id="carEndDate"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bidding-section">
+            <h3>Place Your Bid</h3>
+            <form id="bidForm" class="bid-form">
+                <input type="number" id="bidAmount" class="bid-input" placeholder="Enter your bid" required>
+                <input type="text" id="dateRange" class="date-input" placeholder="Select Date Range" required>
+                <button type="submit" class="primary-button">Place Bid</button>
+            </form>
+            <div class="top-bidders">
+                <h3>Top 3 Bidders</h3>
+                <div id="biddersList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chat-section">
+            <h3>Chat with Owner</h3>
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="chatForm" class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message..." required>
+                <button type="submit" class="primary-button">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Function to get query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Populate details
+        document.getElementById('carName').textContent = getQueryParam('name');
+        document.getElementById('carImage').src = getQueryParam('image');
+        document.getElementById('carPrice').textContent = getQueryParam('price');
+        document.getElementById('carLocation').textContent = "📍 " + getQueryParam('location');
+        document.getElementById('carSeats').textContent = getQueryParam('seats');
+        document.getElementById('carLuggage').textContent = getQueryParam('luggage');
+        document.getElementById('carTransmission').textContent = getQueryParam('transmission');
+        document.getElementById('carMileage').textContent = getQueryParam('mileage');
+        document.getElementById('carStartDate').textContent = getQueryParam('start_date');
+        document.getElementById('carEndDate').textContent = getQueryParam('end_date');
+
+        // Bidding functionality
+        const bidForm = document.getElementById('bidForm');
+        const biddersList = document.getElementById('biddersList');
+        let bids = [];
+
+        // Sample unavailable dates (you would typically get these from a server)
+        const unavailableDates = ["2023-06-10", "2023-06-11", "2023-06-12", "2023-06-20", "2023-06-21"];
+
+        // Initialize date picker
+        flatpickr("#dateRange", {
+            mode: "range",
+            minDate: "today",
+            disable: unavailableDates,
+            dateFormat: "Y-m-d",
+            onClose: function(selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    const startDate = selectedDates[0];
+                    const endDate = selectedDates[1];
+                    // You can perform additional actions here if needed
+                }
+            }
+        });
+
+        bidForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const bidAmount = document.getElementById('bidAmount').value;
+            const dateRange = document.getElementById('dateRange').value;
+            const [startDate, endDate] = dateRange.split(' to ');
+            const bidder = `Bidder ${Math.floor(Math.random() * 1000)}`;
+            bids.push({bidder, amount: parseInt(bidAmount), startDate, endDate});
+            bids.sort((a, b) => b.amount - a.amount);
+            updateBiddersList();
+            bidForm.reset();
+        });
+
+        function updateBiddersList() {
+            biddersList.innerHTML = '';
+            bids.slice(0, 3).forEach(bid => {
+                const bidder = document.createElement('div');
+                bidder.className = 'bidder';
+                bidder.innerHTML = `
+                    <span>${bid.bidder}</span>
+                    <span>$${bid.amount} (${bid.startDate} to ${bid.endDate})</span>
+                `;
+                biddersList.appendChild(bidder);
+            });
+        }
+
+        // Chat functionality
+        const chatForm = document.getElementById('chatForm');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = messageInput.value;
+            addMessage('You', message);
+            // Simulate owner's response
+            setTimeout(() => {
+                addMessage('Owner', 'Thank you for your message. How can I help you?', true);
+            }, 1000);
+            chatForm.reset();
+        });
+
+        function addMessage(sender, message, isOwner = false) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${isOwner ? 'owner' : ''}`;
+            messageElement.textContent = `${sender}: ${message}`;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

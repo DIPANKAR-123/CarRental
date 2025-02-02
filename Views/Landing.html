@@ -344,7 +344,7 @@
                 carCard.className = 'car-card';
                 carCard.innerHTML = `
                     <img src="${car.image}" alt="${car.name}" class="car-image">
-                    <div class="car-details">
+                    <div class="car-details" >
                         <div class="car-header">
                         <h3 class="car-title">${car.name}</h3>
                         <h3 class="car-title">📍${car.location} </h3>
@@ -364,6 +364,10 @@
                         </div>
                     </div>
                 `;
+                carCard.addEventListener('click', () => {
+                    console.log("here")
+            window.location.href = `car-details.html?id=${car.id}&name=${encodeURIComponent(car.name)}&image=${encodeURIComponent(car.image)}&price=${car.price}&location=${encodeURIComponent(car.location)}&seats=${encodeURIComponent(car.specs.seats)}&luggage=${encodeURIComponent(car.specs.luggage)}&transmission=${encodeURIComponent(car.specs.transmission)}&mileage=${encodeURIComponent(car.specs.mileage)}&start_date=${car.start_date}&end_date=${car.end_date}`;
+        });
                 containerId.appendChild(carCard);
             });
         }

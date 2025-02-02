@@ -168,6 +168,7 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: transform 0.2s;
+    cursor: pointer;
 }
 
 .car-card:hover {
