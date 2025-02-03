@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">
+        <a href="#home" class="logo">
             🚗 CarRent
         </a>
         <div class="nav-links">
@@ -61,7 +61,6 @@
         </div>
 
         <div class="cars-grid" id="carsGrid">
-            <!-- Cars will be added here dynamically -->
         </div>
     </section>
 
@@ -72,170 +71,11 @@
         </div>
 
         <div class="cars-grid" id="trendingCarsGrid">
-            <!-- Cars will be added here dynamically -->
         </div>
     </section>
 
-    <!-- <script>
-        // Sample car data
-        const cars = [
-            {
-                id: 1,
-                name: "Tesla Model 3",
-                type: "sedan",
-                image: "https://cdn.pixabay.com/photo/2021/01/15/16/49/tesla-5919764_1280.jpg",
-                price: 99,
-                specs: {
-                    seats: "5 Seats",
-                    luggage: "3 Bags",
-                    transmission: "Automatic",
-                    mileage: "Unlimited"
-                },
-                start_date:"02-02-2025",
-                end_date:"04-02-2025",
-                location:"New York"
-            },
-            {
-                id: 2,
-                name: "BMW X5",
-                type: "suv",
-                image: "https://t3.ftcdn.net/jpg/04/35/92/40/240_F_435924070_A2n5ZyQUF7nCRsYZj6SX1SAYOn5sggFh.jpg",
-                price: 149,
-                specs: {
-                    seats: "7 Seats",
-                    luggage: "5 Bags",
-                    transmission: "Automatic",
-                    mileage: "Unlimited"
-                },
-                start_date:"02-02-2025",
-                end_date:"04-02-2025",
-                location:"New York"
-            },
-            {
-                id: 3,
-                name: "Mercedes S-Class",
-                type: "luxury",
-                image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_1280.jpg",
-                price: 199,
-                specs: {
-                    seats: "4 Seats",
-                    luggage: "3 Bags",
-                    transmission: "Automatic",
-                    mileage: "30Km"
-                },
-                start_date:"02-02-2025",
-                end_date:"04-02-2025",
-                location:"New York"
-            }
-        ];
-
-        // DOM Elements
-        const logOutBtn=document.getElementById('signOut')
-        const carsGrid = document.getElementById('carsGrid');
-        const filterButtons = document.querySelectorAll('.filter-button');
-        const searchForm = document.querySelector('.search-form');
-
-        logOutBtn.addEventListener('click',()=>{
-            console.log("here")
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("user");
-            window.location.href="../login.html"
-        })
-
-        // Render cars
-        function renderCars(carsToRender) {
-            carsGrid.innerHTML = '';
-            carsToRender.forEach(car => {
-                const carCard = document.createElement('div');
-                carCard.className = 'car-card';
-                carCard.innerHTML = `
-                    <img src="${car.image}" alt="${car.name}" class="car-image">
-                    <div class="car-details">
-                        <div class="car-header">
-                        <h3 class="car-title">${car.name}</h3>
-                        <h3 class="car-title">📍${car.location} </h3>
-                        </div>
-                        <div class="car-specs">
-                            <div class="car-spec">👥 ${car.specs.seats}</div>
-                            <div class=
-                            "car-spec">🧳 ${car.specs.luggage}</div>
-                            <div class="car-spec">⚙️ ${car.specs.transmission}</div>
-                            <div class="car-spec">🛣️ ${car.specs.mileage}</div>
-                            <div class="car-spec">📅 ${car.start_date}</div>
-                            <div class="car-spec">📅 ${car.end_date}</div>
-                        </div>
-                        <div class="car-price">
-                            <div class="price">$${car.price}<span>/day</span></div>
-                            <button class="primary-button">Rent Now</button>
-                        </div>
-                    </div>
-                `;
-                carsGrid.appendChild(carCard);
-            });
-        }
-
-        // Filter cars
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active state
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                // Filter cars
-                const filterValue = button.dataset.filter;
-                const filteredCars = filterValue === 'all' 
-                    ? cars 
-                    : cars.filter(car => car.type === filterValue);
-                
-                renderCars(filteredCars);
-            });
-        });
-
-        // Handle search form
-        searchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const location = document.getElementById('location').value;
-            const pickupDate = document.getElementById('pickupDate').value;
-            const returnDate = document.getElementById('returnDate').value;
-
-            // Simulate search loading
-            carsGrid.innerHTML = '<div class="loading">Searching for cars...</div>';
-            
-            // Simulate API call
-            setTimeout(() => {
-                renderCars(cars);
-            }, 1000);
-        });
-
-        // Initial render
-        renderCars(cars);
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add date validation
-        const pickupDateInput = document.getElementById('pickupDate');
-        const returnDateInput = document.getElementById('returnDate');
-
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        pickupDateInput.min = today;
-        returnDateInput.min = today;
-
-        pickupDateInput.addEventListener('change', function() {
-            returnDateInput.min = this.value;
-        });
-    </script> -->
-
+   
     <script>
-        // Sample car data
         const cars = [
             {
                 id: 1,
@@ -322,7 +162,6 @@
             }
         ];
     
-        // DOM Elements
         const logOutBtn=document.getElementById('signOut')
         const carsGrid = document.getElementById('carsGrid');
         const trendingCarsGrid = document.getElementById('trendingCarsGrid');
@@ -336,7 +175,6 @@
             window.location.href="../login.html"
         })
     
-        // Render cars
         function renderCars(carsToRender,containerId) {
             containerId.innerHTML = '';
             carsToRender.forEach(car => {
@@ -365,7 +203,6 @@
                     </div>
                 `;
                 carCard.addEventListener('click', () => {
-                    console.log("here")
             window.location.href = `car-details.html?id=${car.id}&name=${encodeURIComponent(car.name)}&image=${encodeURIComponent(car.image)}&price=${car.price}&location=${encodeURIComponent(car.location)}&seats=${encodeURIComponent(car.specs.seats)}&luggage=${encodeURIComponent(car.specs.luggage)}&transmission=${encodeURIComponent(car.specs.transmission)}&mileage=${encodeURIComponent(car.specs.mileage)}&start_date=${car.start_date}&end_date=${car.end_date}`;
         });
                 containerId.appendChild(carCard);
@@ -375,14 +212,11 @@
         function renderTrendingCars() {
             renderCars(trendingCars, trendingCarsGrid);
         }
-        // Filter cars
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Update active state
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
     
-                // Filter cars
                 const filterValue = button.dataset.filter;
                 const filteredCars = filterValue === 'all' 
                     ? cars 
@@ -392,27 +226,22 @@
             });
         });
     
-        // Handle search form
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const location = document.getElementById('location').value;
             const pickupDate = document.getElementById('pickupDate').value;
             const returnDate = document.getElementById('returnDate').value;
     
-            // Simulate search loading
             carsGrid.innerHTML = '<div class="loading">Searching for cars...</div>';
             
-            // Simulate API call
             setTimeout(() => {
                 renderCars(cars,carsGrid);
             }, 1000);
         });
     
-        // Initial render
         renderCars(cars,carsGrid);
         renderTrendingCars()
     
-        // Add smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -422,11 +251,9 @@
             });
         });   
     
-        // Add date validation
         const pickupDateInput = document.getElementById('pickupDate');
         const returnDateInput = document.getElementById('returnDate');
     
-        // Set minimum date to today
         const today = new Date().toISOString().split('T')[0];
         pickupDateInput.min = today;
         returnDateInput.min = today;
